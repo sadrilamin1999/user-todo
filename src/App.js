@@ -14,7 +14,7 @@ const App = () => {
   // geting tasks
   const getingTasksHandler = async () => {
     try {
-      const res = await fetch("https://kind-daisy-map.glitch.me/tasks");
+      const res = await fetch("https://oceanic-warm-dogsled.glitch.me/task");
       if (!res.ok) throw new Error("Something went wrong");
       const data = await res.json();
       setTasks(data);
@@ -25,7 +25,7 @@ const App = () => {
   return (
     <div className="wrapper min-h-screen bg-gradient-to-t from-gray-900 to-teal-900 text-xl text-gray-200 flex flex-col py-10">
       <Header />
-      <Task />
+      <Task tasks={tasks} setTasks={setTasks} />
       <TaskList tasks={tasks} />
       <Footer />
     </div>
