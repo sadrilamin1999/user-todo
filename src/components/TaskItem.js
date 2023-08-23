@@ -1,6 +1,10 @@
+import { useContext } from "react";
 import { FiEdit, FiTrash } from "react-icons/fi";
+import { DeleteHandlerContext } from "../App";
 
 const TaskItem = ({ task }) => {
+  const handleDelete = useContext(DeleteHandlerContext);
+
   return (
     <div className="task-item bg-gray-800 p-4 rounded flex justify-between hover:bg-green-700 duration-300">
       <div className="item-left flex gap-2">
@@ -15,9 +19,12 @@ const TaskItem = ({ task }) => {
         <span className="hover:text-teal-300 duration-300 cursor-pointer">
           <FiEdit />
         </span>
-        <span className="hover:text-rose-600 duration-300 cursor-pointer">
+        <button
+          onClick={() => handleDelete(task.id)}
+          className="hover:text-rose-600 duration-300 cursor-pointer"
+        >
           <FiTrash />
-        </span>
+        </button>
       </div>
     </div>
   );
