@@ -16,9 +16,9 @@ const TaskItem = ({ task }) => {
         </sapn>
       </div>
       <div className="item-right flex gap-2">
-        <span className="hover:text-teal-300 duration-300 cursor-pointer">
+        <button className="hover:text-teal-300 duration-300 cursor-pointer">
           <FiEdit />
-        </span>
+        </button>
         <button
           onClick={() => handleDelete(task.id)}
           className="hover:text-rose-600 duration-300 cursor-pointer"
