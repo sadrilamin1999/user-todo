@@ -1,15 +1,19 @@
+import { createContext, useEffect, useState } from "react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Task from "./components/Task";
 import TaskList from "./components/TaskList";
-import { createContext, useEffect, useState } from "react";
 
 export const DeleteHandlerContext = createContext();
+export const EditHandlerContext = createContext();
 
 const App = () => {
   const [tasks, setTasks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+
+  const [editedText, setEditedText] = useState("");
+  const [toggleEditMode, setToggleEditMode] = useState(true);
 
   useEffect(() => {
     //geting tasks from server
@@ -37,7 +41,7 @@ const App = () => {
     //set updated task
     setTasks(tasks.filter((task) => id !== task.id));
   };
-
+  // DELETE request
   const deleteData = async (id) => {
     await fetch(`https://oceanic-warm-dogsled.glitch.me/task/${id}`, {
       method: "DELETE",
@@ -46,13 +50,42 @@ const App = () => {
       },
     });
   };
+
+  // Edit handler
+  const handleEdit = (id) => {
+    const [editableTarget] = tasks.filter((task) => id === task.id);
+    editableTarget.isEditable = true;
+    setEditedText(editableTarget.text);
+
+    setTasks([...tasks]);
+    setToggleEditMode(false);
+
+    // re-arrange
+    tasks
+      .filter((task) => task.id !== id)
+      .map((targetedEl) => (targetedEl.isEditable = false));
+  };
+
+  // Editing task form handler
+  const handleEditSubmitter = (e, id) => {
+    console.log(id);
+  };
   return (
     <div className="wrapper min-h-screen bg-gradient-to-t from-gray-900 to-teal-900 text-xl text-gray-200 flex flex-col py-10">
       <DeleteHandlerContext.Provider value={handleDelete}>
-        <Header />
-        <Task tasks={tasks} setTasks={setTasks} />
-        <TaskList tasks={tasks} loading={loading} error={error} />
-        <Footer />
+        <EditHandlerContext.Provider value={handleEdit}>
+          <Header />
+          <Task tasks={tasks} setTasks={setTasks} />
+          <TaskList
+            tasks={tasks}
+            loading={loading}
+            error={error}
+            handleEditSubmitter={handleEditSubmitter}
+            editedText={editedText}
+            setEditedText={setEditedText}
+          />
+          <Footer />
+        </EditHandlerContext.Provider>
       </DeleteHandlerContext.Provider>
     </div>
   );
