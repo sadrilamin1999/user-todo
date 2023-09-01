@@ -68,7 +68,28 @@ const App = () => {
 
   // Editing task form handler
   const handleEditSubmitter = (e, id) => {
-    console.log(id);
+    e.preventDefault();
+
+    setToggleEditMode(toggleEditMode);
+
+    // persist data
+    const editPersistance = {
+      text: editedText,
+      id: id,
+    };
+
+    // put request
+    puttingRequest(id, editPersistance);
+  };
+
+  const puttingRequest = async (id, newData) => {
+    fetch(`https://oceanic-warm-dogsled.glitch.me/task/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(newData),
+    });
   };
   return (
     <div className="wrapper min-h-screen bg-gradient-to-t from-gray-900 to-teal-900 text-xl text-gray-200 flex flex-col py-10">

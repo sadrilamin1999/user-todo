@@ -16,7 +16,7 @@ const TaskItem = ({ task, handleEditSubmitter, editedText, setEditedText }) => {
         {task.isEditable && (
           <form onSubmit={(e) => handleEditSubmitter(e, task.id)}>
             <input
-              className="bg-transparent outline-none border-b-2 pb-1 border-gray-500 focus:border-teal-500"
+              className="bg-transparent outline-none border-b-2 pb-1 border-White"
               type="text"
               required
               value={editedText}
@@ -26,8 +26,6 @@ const TaskItem = ({ task, handleEditSubmitter, editedText, setEditedText }) => {
         )}
 
         {!task.isEditable && <p>{task.text}</p>}
-
-        {/* <p>{task.text}</p> */}
       </div>
       <div className="item-right flex gap-2">
         <button
