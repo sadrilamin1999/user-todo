@@ -80,6 +80,13 @@ const App = () => {
 
     // put request
     puttingRequest(id, editPersistance);
+
+    // real time update
+    const [editableTarget] = tasks.filter((task) => id === task.id);
+    editableTarget.isEditable = false;
+    editableTarget.text = editPersistance.text;
+
+    setTasks([...tasks]);
   };
 
   const puttingRequest = async (id, newData) => {
