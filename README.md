@@ -38,9 +38,9 @@ cd user-todo
 `
 npm install
 `
-Start the development server:
+4. Start the development server:
 `
-4. npm start
+npm start
 `
 Open your web browser and access the app at http://localhost:3000.
 
