@@ -12,7 +12,6 @@ The **user-todo** project is a feature-rich ToDo application built using React a
 - **Create Tasks:** Easily add new tasks with a user-friendly interface.
 - **Edit Tasks:** Edit task names and details to keep your to-do list up-to-date.
 - **Delete Tasks:** Remove completed or unnecessary tasks in a snap.
-- **Responsive Design:** The app is designed to work seamlessly on both desktop and mobile devices.
 - **Clean and Intuitive UI:** A user-friendly interface ensures a smooth task management experience.
 - **Task Organization:** Group tasks by priority, due date, or category.
 - **Task Completion:** Mark tasks as complete to keep track of your progress.
